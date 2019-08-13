@@ -79,17 +79,19 @@ int main()
                sizeof(servaddr));
         u32 index = 0;
         u32 sent_size;
-        /*do
+        do
         {
+            usleep(10000);
             struct pkg_img pkg_img;
             pkg_img.img_magic = MAGIC_IMG;
             pkg_img.index = index;
             sent_size = fread(pkg_img.img, 1, IMG_BUF_SIZE, f);
+            pkg_img.used_size = sent_size;
             sendto(sockfd, (const char *)&pkg_img, sizeof(pkg_img),
                    0, (const struct sockaddr *)&servaddr,
                    sizeof(servaddr));
             index++;
-        } while (sent_size == IMG_BUF_SIZE);*/
+        } while (sent_size == IMG_BUF_SIZE);
 
         fclose(f);
 
